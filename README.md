@@ -1,36 +1,45 @@
-# React + TypeScript + Vite + Tailwind
+# 🌟 FlexiForms – A Dynamic Form Builder App
 
-This template provides a minimal setup to get React working in Vite, TypeScript, and Tailwind.
+Live Site 🔗: [https://flexi-forms-gijr.vercel.app](https://flexi-forms-gijr.vercel.app)  
+GitHub Repo 📁: [FlexiForms GitHub](https://github.com/KhadizaSamiha/FlexiForms.git)
 
-## Getting Started 🚀
+## ✨ Overview
+**FlexiForms** is a customizable form builder application that allows users to dynamically add or remove input fields, preview the form in real-time, and view the submitted data in JSON format. It's built using React, Tailwind CSS, and state is managed via Context API.
 
-1. Clone the repo.
-2. Install dependencies: `pnpm install`
-3. Start the dev server: `pnpm dev`
+---
 
-### Or
+## 🎯 Features
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmoinulmoin%2Fvite-react-tailwind-starter)
+### 🧱 Form Builder
+- ➕ Dynamically **add or remove** input fields
+- 📝 Choose field types: `Text`, `Email`, `Checkbox`, `Select`
+- 🔧 For `Select` fields, **custom options** can be added
 
-## Expanding the ESLint configuration
+### 👀 Form Preview
+- Live preview of the form as fields are added or updated
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### 📤 Submit Handling
+- On form submission, **form data is displayed in JSON** format
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+## 🧠 More Features
+- ✅ Add basic **validation rules** per field
+- 🌙 **Dark mode** toggle for better accessibility
+- 📥 **Download JSON** data as a file
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+---
 
-## License 📄
+## 🛠️ Tech Stack
+- **React** with Vite
+- **Tailwind CSS** for styling
+- **Shadcn/UI** for clean, modern UI components
 
-[MIT License](https://github.com/moinulmoin/vite-react-tailwind-starter/blob/master/LICENSE)
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the Repo
+```bash
+git clone https://github.com/KhadizaSamiha/FlexiForms.git
+cd FlexiForms
