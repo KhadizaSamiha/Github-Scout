@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useState, useEffect } from "react"
-import { useFormContext, type Field } from "../context/FormContext"
+import { useFormContext, type Field } from "@/contexts/FormContext"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -11,7 +11,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { AlertCircle } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { generateJSON } from "../utils/generateJSON"
+import { generateJSON } from "@/utils/generateJSON"
 
 interface FormPreviewProps {
   onSubmit: (jsonData: string) => void
@@ -26,7 +26,7 @@ const FormPreview: React.FC<FormPreviewProps> = ({ onSubmit }) => {
     setErrors({})
   }, [fields])
 
-  const validateField = (field: Field, value: any): string => {
+  const validateField = (field: Field, value: string | number | boolean): string => {
     if (!field.validation) return ""
 
     if (field.validation.required && (value === undefined || value === "")) {
@@ -50,7 +50,7 @@ const FormPreview: React.FC<FormPreviewProps> = ({ onSubmit }) => {
     return ""
   }
 
-  const handleChange = (fieldId: string, value: any) => {
+  const handleChange = (fieldId: string, value: string | number | boolean) => {
     updateFormData(fieldId, value)
 
     const field = fields.find((f) => f.id === fieldId)

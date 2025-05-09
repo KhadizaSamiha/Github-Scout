@@ -1,9 +1,7 @@
-import DarkModeToggle from "./components/ui/DarkModeToggle";
+import MainLayout from "./components/MainLayout";
 
 function App() {
-  return (
-    <DarkModeToggle/>
-  );
+  return <MainLayout/>
 }
 
 export default App;

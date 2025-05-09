@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { type Field, type FieldType, type ValidationRule, useFormContext } from "../context/FormContext"
+import { type Field, type FieldType, type ValidationRule, useFormContext } from "@/contexts/FormContext"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
@@ -25,16 +25,17 @@ const FieldInput: React.FC<FieldInputProps> = ({ field, index, totalFields }) =>
     value: "",
   })
 
-  const handleFieldChange = (key: keyof Field, value: any) => {
-    console.log(`Updating field ${field.id}, key: ${key}, value:`, value)
-    updateField(field.id, { [key]: value })
-  }
+ const handleFieldChange = <T extends keyof Field>(key: T, value: Field[T]) => {
+  console.log(`Updating field ${field.id}, key: ${key}, value:`, value)
+  updateField(field.id, { [key]: value })
+}
 
-  const handleValidationChange = (key: keyof ValidationRule, value: any) => {
-    console.log(`Updating validation for field ${field.id}, key: ${key}, value:`, value)
-    const updatedValidation = { ...(field.validation || {}), [key]: value }
-    updateField(field.id, { validation: updatedValidation })
-  }
+const handleValidationChange = <T extends keyof ValidationRule>(key: T, value: ValidationRule[T]) => {
+  console.log(`Updating validation for field ${field.id}, key: ${key}, value:`, value)
+  const updatedValidation = { ...(field.validation || {}), [key]: value }
+  updateField(field.id, { validation: updatedValidation })
+}
+
 
   const addOption = () => {
     if (newOption.label && newOption.value) {

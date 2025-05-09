@@ -1,8 +1,6 @@
 "use client"
 
 import type React from "react"
-import { useFormContext } from "../context/FormContext"
-import { useFormBuilder } from "../hooks/useFormBuilder"
 import FieldInput from "./FieldInput"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -11,6 +9,8 @@ import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Plus, X } from "lucide-react"
+import { useFormContext } from "@/contexts/FormContext"
+import { useFormBuilder } from "@/hooks/useFormBuilders"
 
 const FormBuilder: React.FC = () => {
   const { fields, addField } = useFormContext()
@@ -153,7 +153,7 @@ const FormBuilder: React.FC = () => {
                           onChange={(e) =>
                             handleValidationChange(
                               "minLength",
-                              e.target.value ? Number.parseInt(e.target.value) : undefined,
+                              e.target.value ? Number.parseInt(e.target.value, 10) : "",
                             )
                           }
                           placeholder="Minimum length"
@@ -168,7 +168,7 @@ const FormBuilder: React.FC = () => {
                           onChange={(e) =>
                             handleValidationChange(
                               "maxLength",
-                              e.target.value ? Number.parseInt(e.target.value) : undefined,
+                              e.target.value ? Number.parseInt(e.target.value, 10) : "",
                             )
                           }
                           placeholder="Maximum length"
