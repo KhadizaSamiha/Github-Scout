@@ -1,96 +1,108 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState, useEffect } from "react"
-import { useFormContext, type Field } from "@/contexts/FormContext"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { AlertCircle } from "lucide-react"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { generateJSON } from "@/utils/generateJSON"
+import type React from "react";
+import { useState, useEffect } from "react";
+import { useFormContext } from "@/hooks/useFormContext";
+import { type Field } from "@/types/form";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import { AlertCircle } from "lucide-react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { generateJSON } from "@/utils/generateJSON";
+
+function getSafeInputValue(value: unknown): string | number | undefined {
+  return typeof value === "string" || typeof value === "number" ? value : "";
+}
 
 interface FormPreviewProps {
-  onSubmit: (jsonData: string) => void
+  onSubmit: (jsonData: string) => void;
 }
 
 const FormPreview: React.FC<FormPreviewProps> = ({ onSubmit }) => {
-  const { fields, formData, updateFormData, resetForm } = useFormContext()
-  const [errors, setErrors] = useState<Record<string, string>>({})
+  const { fields, formData, updateFormData, resetForm } = useFormContext();
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
     // Reset errors when fields change
-    setErrors({})
-  }, [fields])
+    setErrors({});
+  }, [fields]);
 
-  const validateField = (field: Field, value: string | number | boolean): string => {
-    if (!field.validation) return ""
+  const validateField = (
+    field: Field,
+    value: string | number | boolean
+  ): string => {
+    if (!field.validation) return "";
 
     if (field.validation.required && (value === undefined || value === "")) {
-      return "This field is required"
+      return "This field is required";
     }
 
     if (typeof value === "string") {
-      if (field.validation.minLength && value.length < field.validation.minLength) {
-        return `Minimum ${field.validation.minLength} characters required`
+      if (
+        field.validation.minLength &&
+        value.length < field.validation.minLength
+      ) {
+        return `Minimum ${field.validation.minLength} characters required`;
       }
 
-      if (field.validation.maxLength && value.length > field.validation.maxLength) {
-        return `Maximum ${field.validation.maxLength} characters allowed`
+      if (
+        field.validation.maxLength &&
+        value.length > field.validation.maxLength
+      ) {
+        return `Maximum ${field.validation.maxLength} characters allowed`;
       }
 
       if (field.type === "email" && !/\S+@\S+\.\S+/.test(value)) {
-        return "Please enter a valid email address"
+        return "Please enter a valid email address";
       }
     }
 
-    return ""
-  }
+    return "";
+  };
 
-  const handleChange = (fieldId: string, value: string | number | boolean) => {
-    updateFormData(fieldId, value)
+  const handleChange = (fieldId: string, value: unknown) => {
+    const field = fields.find((f) => f.id === fieldId);
+    if (!field) return;
 
-    const field = fields.find((f) => f.id === fieldId)
-    if (field) {
-      const error = validateField(field, value)
-      setErrors((prev) => ({
-        ...prev,
-        [fieldId]: error,
-      }))
-    }
-  }
+    const error = validateField(field, value as string | number | boolean);
+    updateFormData(fieldId, value as string | number | boolean);
+    setErrors((prev) => ({
+      ...prev,
+      [fieldId]: error,
+    }));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
     // Validate all fields
-    const newErrors: Record<string, string> = {}
-    let hasErrors = false
+    const newErrors: Record<string, string> = {};
+    let hasErrors = false;
 
     fields.forEach((field) => {
-      const value = formData[field.id]
-      const error = validateField(field, value)
+      const value = formData[field.id];
+      const error = validateField(field, value);
       if (error) {
-        newErrors[field.id] = error
-        hasErrors = true
+        newErrors[field.id] = error;
+        hasErrors = true;
       }
-    })
+    });
 
-    setErrors(newErrors)
+    setErrors(newErrors);
 
     if (!hasErrors) {
-      const json = generateJSON(fields, formData)
-      onSubmit(json)
+      const json = generateJSON(fields, formData);
+      onSubmit(json);
     }
-  }
+  };
 
   const handleReset = () => {
-    resetForm()
-    setErrors({})
-  }
+    resetForm();
+    setErrors({});
+  };
 
   if (fields.length === 0) {
     return (
@@ -102,7 +114,7 @@ const FormPreview: React.FC<FormPreviewProps> = ({ onSubmit }) => {
           </div>
         </CardContent>
       </Card>
-    )
+    );
   }
 
   return (
@@ -118,22 +130,27 @@ const FormPreview: React.FC<FormPreviewProps> = ({ onSubmit }) => {
                 <div className="flex items-center space-x-2">
                   <Checkbox
                     id={field.id}
-                    checked={formData[field.id] || false}
-                    onCheckedChange={(checked) => handleChange(field.id, checked === true)}
+                    checked={Boolean(formData[field.id])}
+                    onCheckedChange={(checked) =>
+                      handleChange(field.id, checked === true)
+                    }
                   />
+
                   <Label htmlFor={field.id}>{field.label}</Label>
                 </div>
               ) : (
                 <Label htmlFor={field.id}>
                   {field.label}
-                  {field.validation?.required && <span className="text-destructive ml-1">*</span>}
+                  {field.validation?.required && (
+                    <span className="text-destructive ml-1">*</span>
+                  )}
                 </Label>
               )}
 
               {field.type === "text" && (
                 <Input
                   id={field.id}
-                  value={formData[field.id] || ""}
+                  value={getSafeInputValue(formData[field.id])}
                   onChange={(e) => handleChange(field.id, e.target.value)}
                   placeholder={field.placeholder}
                 />
@@ -143,25 +160,20 @@ const FormPreview: React.FC<FormPreviewProps> = ({ onSubmit }) => {
                 <Input
                   id={field.id}
                   type="email"
-                  value={formData[field.id] || ""}
+                  value={getSafeInputValue(formData[field.id])}
                   onChange={(e) => handleChange(field.id, e.target.value)}
                   placeholder={field.placeholder}
                 />
               )}
 
-              {field.type === "select" && (
-                <Select value={formData[field.id] || ""} onValueChange={(value) => handleChange(field.id, value)}>
-                  <SelectTrigger id={field.id}>
-                    <SelectValue placeholder={field.placeholder || "Select an option"} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {(field.options || []).map((option) => (
-                      <SelectItem key={option.value} value={option.value}>
-                        {option.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+              {field.type === "email" && (
+                <Input
+                  id={field.id}
+                  type="email"
+                  value={getSafeInputValue(formData[field.id])}
+                  onChange={(e) => handleChange(field.id, e.target.value)}
+                  placeholder={field.placeholder}
+                />
               )}
 
               {errors[field.id] && (
@@ -183,7 +195,7 @@ const FormPreview: React.FC<FormPreviewProps> = ({ onSubmit }) => {
         </form>
       </CardContent>
     </Card>
-  )
-}
+  );
+};
 
-export default FormPreview
+export default FormPreview;

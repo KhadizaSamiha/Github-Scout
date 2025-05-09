@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Plus, X } from "lucide-react"
-import { useFormContext } from "@/contexts/FormContext"
+import { useFormContext } from "@/hooks/useFormContext"
 import { useFormBuilder } from "@/hooks/useFormBuilders"
 
 const FormBuilder: React.FC = () => {

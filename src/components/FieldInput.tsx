@@ -1,7 +1,8 @@
 "use client"
 
 import React from "react"
-import { type Field, type FieldType, type ValidationRule, useFormContext } from "@/contexts/FormContext"
+import { useFormContext } from "@/hooks/useFormContext" // Ensure the import path is correct
+import { type Field, type FieldType, type ValidationRule } from "@/contexts/FormContext"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
