@@ -4,7 +4,7 @@ import type React from "react";
 import { useState, useEffect } from "react";
 import { useFormContext } from "@/hooks/useFormContext";
 import { type Field } from "@/types/form";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -119,11 +119,8 @@ const FormPreview: React.FC<FormPreviewProps> = ({ onSubmit }) => {
 
   return (
     <Card>
-      <CardHeader>
-        <CardTitle>Form Preview</CardTitle>
-      </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 mt-3">
           {fields.map((field) => (
             <div key={field.id} className="space-y-2">
               {field.type === "checkbox" ? (
@@ -139,7 +136,7 @@ const FormPreview: React.FC<FormPreviewProps> = ({ onSubmit }) => {
                   <Label htmlFor={field.id}>{field.label}</Label>
                 </div>
               ) : (
-                <Label htmlFor={field.id}>
+                <Label htmlFor={field.id} className="text-label">
                   {field.label}
                   {field.validation?.required && (
                     <span className="text-destructive ml-1">*</span>
@@ -150,16 +147,6 @@ const FormPreview: React.FC<FormPreviewProps> = ({ onSubmit }) => {
               {field.type === "text" && (
                 <Input
                   id={field.id}
-                  value={getSafeInputValue(formData[field.id])}
-                  onChange={(e) => handleChange(field.id, e.target.value)}
-                  placeholder={field.placeholder}
-                />
-              )}
-
-              {field.type === "email" && (
-                <Input
-                  id={field.id}
-                  type="email"
                   value={getSafeInputValue(formData[field.id])}
                   onChange={(e) => handleChange(field.id, e.target.value)}
                   placeholder={field.placeholder}

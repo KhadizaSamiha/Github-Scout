@@ -16,19 +16,17 @@ const MainLayout: React.FC = () => {
     setShowJSON(true);
   };
 
-
-
   return (
-    <div className='min-h-screen'>
-      <Header  />
+    <div className="min-h-screen bg-background">
+      <Header />
 
       <main className="container mx-auto py-8 px-4">
         <FormProvider>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <h2 className="text-xl font-bold">Form Builder</h2>
-                <p className="text-sm text-muted-foreground">
+                <h2 className="text-xl font-bold text-primary">Form Builder</h2>
+                <p className="text-sm text-gray-600 dark:text-secondary">
                   Create your custom form
                 </p>
               </div>
@@ -37,8 +35,8 @@ const MainLayout: React.FC = () => {
 
             <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <h2 className="text-xl font-bold">Form Preview</h2>
-                <p className="text-sm text-muted-foreground">
+                <h2 className="text-xl font-bold text-primary">Form Preview</h2>
+                <p className="text-sm text-gray-600 dark:text-secondary">
                   See how your form looks
                 </p>
               </div>

@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 60, 64%, 92%;
     --foreground: 222 47% 11%;
 
     --primary: 145 21% 41%; /* #537D5D */
@@ -19,9 +19,10 @@
     --muted: 54 27% 72%; /* #D2D0A0 */
     --muted-foreground: 0 0% 20%;
 
-    --border: 210 20% 90%;
-    --input: 210 20% 98%;
+    --border: 200, 13%, 85%;
+    --input: 200, 13%, 85%;
     --ring: 145 21% 41%;
+    --label: 124 47% 34%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
@@ -58,6 +59,9 @@
     --border: 210 15% 30%;
     --input: 210 15% 25%;
     --ring: 82 34% 65%;
+    --label: 0 0% 100%;
+    
+    
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
