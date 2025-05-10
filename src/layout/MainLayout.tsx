@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios, { AxiosError } from "axios";
 import UserSearch from "@/components/user-search/UserSearch";
 import UserProfile from "@/components/user-preview/UserProfile";
-import { GitHubUser } from "@/types/Github";
+import { GitHubUser } from "@/types/github";
 import { debounce } from "lodash";
 
 const MainLayout = () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { GitHubRepo } from "@/types/Github";
+import { GitHubRepo } from "@/types/github";
 import { GoRepo } from "react-icons/go";
 
 interface UserReposProps {

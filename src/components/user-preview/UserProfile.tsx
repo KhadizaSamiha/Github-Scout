@@ -1,5 +1,5 @@
 import React from "react";
-import { GitHubUser } from "@/types/Github";
+import { GitHubUser } from "@/types/github";
 import UserRepos from "./UserRepos";
 
 interface UserProfileProps {
