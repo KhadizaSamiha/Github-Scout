@@ -13,27 +13,41 @@ const UserRepos: React.FC<UserReposProps> = ({ repos }) => {
   const [bookmarked, setBookmarked] = useState<string[]>([]);
 
   useEffect(() => {
-    const saved = localStorage.getItem("bookmarkedRepos");
-    if (saved) {
-      setBookmarked(JSON.parse(saved));
+  const saved = localStorage.getItem("bookmarkedRepos");
+  if (saved) {
+    try {
+      const parsed: GitHubRepo[] = JSON.parse(saved);
+      setBookmarked(parsed.map((r) => `${r.owner.login}/${r.name}`));
+    } catch (error) {
+      console.error("Error parsing bookmarks", error);
     }
-  }, []);
+  }
+}, []);
 
-  const toggleBookmark = (repo: GitHubRepo) => {
-    const repoId = `${repo.owner.login}/${repo.name}`;
-    let updatedBookmarks: string[];
+ const toggleBookmark = (repo: GitHubRepo) => {
+  const stored = localStorage.getItem("bookmarkedRepos");
+  const currentBookmarks: GitHubRepo[] = stored ? JSON.parse(stored) : [];
 
-    if (bookmarked.includes(repoId)) {
-      updatedBookmarks = bookmarked.filter((id) => id !== repoId);
-      toast.error(`Removed ${repo.name} from bookmarks.`);
-    } else {
-      updatedBookmarks = [...bookmarked, repoId];
-      toast.success(`Bookmarked ${repo.name}!`);
-    }
+  const exists = currentBookmarks.some(
+    (item: GitHubRepo) => item.owner.login === repo.owner.login && item.name === repo.name
+  );
 
-    setBookmarked(updatedBookmarks);
-    localStorage.setItem("bookmarkedRepos", JSON.stringify(updatedBookmarks));
-  };
+  let updatedBookmarks: GitHubRepo[];
+
+  if (exists) {
+    updatedBookmarks = currentBookmarks.filter(
+      (item: GitHubRepo) => item.owner.login !== repo.owner.login || item.name !== repo.name
+    );
+    toast.error(`Removed ${repo.name} from bookmarks.`);
+  } else {
+    updatedBookmarks = [...currentBookmarks, repo];
+    toast.success(`Bookmarked ${repo.name}!`);
+  }
+
+  setBookmarked(updatedBookmarks.map((r) => `${r.owner.login}/${r.name}`));
+  localStorage.setItem("bookmarkedRepos", JSON.stringify(updatedBookmarks));
+};
+
 
   return (
     <div className="my-6">

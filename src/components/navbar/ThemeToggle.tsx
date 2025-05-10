@@ -31,7 +31,7 @@ const ThemeToggle: React.FC = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded-full text-xl bg-gray-700 dark:bg-gray-200"
+      className="p-2.5 rounded-full text-xl bg-gray-700 dark:bg-gray-200"
     >
       {isDarkMode ? (
         <BsFillMoonFill className="text-yellow-500" />

@@ -6,6 +6,7 @@ export interface GitHubRepoOwner {
 }
 
 export interface GitHubRepo {
+  id: number;
   name: string;
   description?: string; 
   stargazers_count: number;
