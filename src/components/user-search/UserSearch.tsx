@@ -24,7 +24,7 @@ const UserSearch: React.FC<Props> = ({ onSearch }) => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Enter GitHub username"
-          className="px-4 py-2 w-full max-w-sm rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
+          className="px-4 py-2 w-full max-w-sm rounded-md border border-accent focus:outline-none focus:ring-2 focus:ring-accent"
         />
         <button
           onClick={handleClick}
