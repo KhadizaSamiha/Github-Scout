@@ -13,6 +13,7 @@ export interface GitHubRepo {
   language?: string; 
   license?: { name: string }; 
   owner: GitHubRepoOwner;
+  private: boolean;
 }
 
 export interface GitHubUser {

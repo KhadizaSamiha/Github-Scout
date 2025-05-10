@@ -1,5 +1,6 @@
 import React from "react";
 import { GitHubRepo } from "@/types/Github";
+import { GoRepo } from "react-icons/go";
 
 interface UserReposProps {
   repos: GitHubRepo[];
@@ -12,7 +13,15 @@ const UserRepos: React.FC<UserReposProps> = ({ repos }) => {
       <ul className="mt-6 space-y-6">
         {repos.map((repo) => (
           <li key={repo.name} className="p-6 rounded-xl shadow-xl bg-blue-100">
-            <h4 className="text-2xl font-bold text-accent">{repo.name}</h4>
+            <div className="flex items-center gap-1">
+              <GoRepo className="text-accent text-md" /> 
+              <h4 className="text-xl font-bold text-accent flex items-center">
+                {repo.name}
+                {repo.private === false && (
+                  <span className="ml-1 text-xs text-green-500">(public)</span> // Display public label
+                )}
+              </h4>
+            </div>
             <p className="mt-2 text-sm text-gray-600">{repo.description || "No description provided."}</p>
             <div className="flex gap-8 mt-4 text-sm text-gray-700">
               <p>
