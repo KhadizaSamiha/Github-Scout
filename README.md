@@ -1,45 +1,39 @@
-# 🌟 FlexiForms – A Dynamic Form Builder App
+# 🔍 GitHub User Explorer
 
-Live Site 🔗: [https://flexi-forms-gijr.vercel.app](https://flexi-forms-gijr.vercel.app)  
-GitHub Repo 📁: [FlexiForms GitHub](https://github.com/KhadizaSamiha/FlexiForms.git)
+A modern React application that allows you to search for any GitHub username and view their profile and public repositories. It includes language-based filtering, pagination or infinite scroll, and repository bookmarking using localStorage.
 
-## ✨ Overview
-**FlexiForms** is a customizable form builder application that allows users to dynamically add or remove input fields, preview the form in real-time, and view the submitted data in JSON format. It's built using React, Tailwind CSS, and state is managed via Context API.
+## 🚀 Live Demo
+👉 [GitHub User Explorer Live](https://your-demo-link.com)
 
 ---
 
 ## 🎯 Features
 
-### 🧱 Form Builder
-- ➕ Dynamically **add or remove** input fields
-- 📝 Choose field types: `Text`, `Email`, `Checkbox`, `Select`
-- 🔧 For `Select` fields, **custom options** can be added
+### 🔍 User Search
+- ✅ Search input for GitHub usernames
+- ✅ Debounced search with 500ms delay to reduce unnecessary API calls
+- ✅ Displays user profile info (avatar, name, bio, followers)
 
-### 👀 Form Preview
-- Live preview of the form as fields are added or updated
+### 📂 Repositories
+- ✅ Fetches all public repositories of the user
 
-### 📤 Submit Handling
-- On form submission, **form data is displayed in JSON** format
+### 📌 Bookmarks
+- ✅ Bookmark repositories using `localStorage`
+- ✅ View bookmarked repositories in a modal/dialog
 
----
-
-## 🧠 More Features
-- ✅ Add basic **validation rules** per field
-- 🌙 **Dark mode** toggle for better accessibility
-- 📥 **Download JSON** data as a file
-
----
-
-## 🛠️ Tech Stack
-- **React** with Vite
-- **Tailwind CSS** for styling
-- **Shadcn/UI** for clean, modern UI components
+### 💅 UI/UX Enhancements
+- ✅ Responsive design (mobile-friendly)
+- ✅ Loading spinner during data fetch
+- ✅ Dark mode toggle
+- ✅ Error handling (e.g., user not found)
+- ✅ Displays total stars and forks per repository
 
 ---
 
-## 🚀 Getting Started
+## 📦 Installation & Setup
 
-### 1️⃣ Clone the Repo
 ```bash
-git clone https://github.com/KhadizaSamiha/FlexiForms.git
-cd FlexiForms
+git clone https://github.com/your-username/github-user-explorer.git
+cd github-user-explorer
+npm install
+npm run dev

@@ -4,7 +4,9 @@ import MainLayout from "./layout/MainLayout";
 function App() {
   return (
     <div className="max-w-screen-lg mx-auto ">
-      <Navbar/>
+      {/* nav part */}
+      <Navbar />
+      {/* main part */}
       <MainLayout />
     </div>
   );

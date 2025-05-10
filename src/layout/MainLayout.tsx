@@ -19,7 +19,9 @@ const MainLayout = () => {
 
     try {
       const res = await axios.get(`https://api.github.com/users/${username}`);
-      const reposRes = await axios.get(`https://api.github.com/users/${username}/repos`);
+      const reposRes = await axios.get(
+        `https://api.github.com/users/${username}/repos`
+      );
 
       setUserData({
         ...res.data,
@@ -41,19 +43,24 @@ const MainLayout = () => {
 
   return (
     <div className="max-w-3xl mx-auto px-4 mt-10">
+      {/* Profile Search option*/}
       <UserSearch onSearch={(username: string) => handleUserSearch(username)} />
 
+      {/* loader */}
       {loading && (
         <div className="flex justify-center mt-8">
           <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
         </div>
       )}
 
-      {error && <p className="text-red-500 mt-6 text-center">{error}</p>}
+      {/* error message */}
+      {error && <p className="text-red-500 mt-6 text-center font-semibold">{error}</p>}
 
+      {/* user profile and repositories */}
       {userData && (
         <>
           <UserProfile userData={userData} />
+          {/* preview user repository */}
           {userData.repos && <UserRepos repos={userData.repos} />}
         </>
       )}
