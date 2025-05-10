@@ -3,7 +3,7 @@
 A modern React application that allows you to search for any GitHub username and view their profile and public repositories. It includes language-based filtering, pagination or infinite scroll, and repository bookmarking using localStorage.
 
 ## 🚀 Live Demo
-👉 [GitHub User Explorer Live](https://your-demo-link.com)
+👉 [GitHub User Explorer Live](https://github.com/KhadizaSamiha/Github-Scout.git)
 
 ---
 
