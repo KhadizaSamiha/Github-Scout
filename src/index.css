@@ -41,19 +41,19 @@
   }
 
   .dark {
-    --background: 222 47% 11%;
+    --background: 181, 40%, 47%;
     --foreground: 0 0% 100%;
 
-    --primary: 82 34% 65%;
+    --primary: 44, 30%, 93%;
     --primary-foreground: 0 0% 10%;
 
-    --secondary: 54 27% 72%;
+    --secondary: 186.15, 33.05%, 46.27%;
     --secondary-foreground: 0 0% 10%;
 
-    --accent: 145 21% 41%;
+    --accent: 186, 36%, 71%;
     --accent-foreground: 0 0% 100%;
 
-    --muted: 131 17% 51%;
+    --muted: 184, 100%, 22%;
     --muted-foreground: 0 0% 100%;
 
     --border: 210 15% 30%;

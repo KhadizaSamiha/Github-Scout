@@ -8,7 +8,7 @@ interface UserProfileProps {
 
 const UserProfile: React.FC<UserProfileProps> = ({ userData }) => {
   return (
-    <div className="mt-10 text-center bg-gradient-to-b from-[#213448] to-[#547792] text-white p-8 rounded-xl shadow-lg">
+    <div className="mt-10 text-center bg-gradient-to-b from-[#213448] to-[#547792] dark:from-[hsl(181,40%,47%)] dark:to-[hsl(186,36%,71%)] text-white p-8 rounded-xl shadow-lg">
       <img
         src={userData.avatar_url}
         alt="avatar"

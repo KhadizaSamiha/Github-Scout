@@ -48,15 +48,15 @@ const UserRepos: React.FC<UserReposProps> = ({ repos }) => {
             <li key={repo.name} className="p-6 rounded-xl shadow-xl bg-blue-100 relative">
               <button
                 onClick={() => toggleBookmark(repo)}
-                className="absolute top-4 right-4 text-xl text-accent hover:text-blue-800"
+                className="absolute top-4 right-4 text-xl text-accent dark:text-muted hover:text-blue-800"
                 title={isBookmarked ? "Remove Bookmark" : "Add Bookmark"}
               >
                 {isBookmarked ? <BsBookmarkFill /> : <BsBookmark />}
               </button>
 
-              <div className="flex items-center gap-1">
-                <GoRepo className="text-accent text-md" />
-                <h4 className="text-xl font-bold text-accent flex items-center">
+              <div className="flex items-center gap-1 text-accent dark:text-muted">
+                <GoRepo className="text-md" />
+                <h4 className="text-xl font-bold flex items-center">
                   {repo.name}
                   {!repo.private && (
                     <span className="ml-1 text-xs text-green-500">(public)</span>

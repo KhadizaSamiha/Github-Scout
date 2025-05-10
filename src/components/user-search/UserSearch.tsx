@@ -16,7 +16,7 @@ const UserSearch: React.FC<Props> = ({ onSearch }) => {
   return (
     <div className="text-center">
       <h1 className="text-4xl font-bold text-primary mb-2">GitHub Scount</h1>
-      <p className="text-secondary dark:text-gray-300 mb-6">
+      <p className="text-secondary dark:text-gray-200 mb-6">
         Enter a GitHub username to explore profile and repositories.
       </p>
       <div className="flex justify-center items-center gap-2">
@@ -24,7 +24,7 @@ const UserSearch: React.FC<Props> = ({ onSearch }) => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Enter GitHub username"
-          className="px-4 py-2 w-full max-w-sm rounded-md border border-accent focus:outline-none focus:ring-2 focus:ring-accent"
+          className="px-4 py-2 w-full max-w-sm rounded-md text-gray-600 border border-accent focus:outline-none focus:ring-2 focus:ring-accent"
         />
         <button
           onClick={handleClick}
