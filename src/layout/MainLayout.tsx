@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios, { AxiosError } from "axios";
 import UserSearch from "@/components/user-search/UserSearch";
 import UserProfile from "@/components/user-preview/UserProfile";
+import UserRepos from "@/components/user-preview/UserRepos";
 import { GitHubUser } from "@/types/github";
 import { debounce } from "lodash";
 
@@ -11,7 +12,6 @@ const MainLayout = () => {
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
-  // Debounced API call function
   const handleUserSearch = debounce(async (username: string) => {
     setUserData(null);
     setError("");
@@ -37,7 +37,7 @@ const MainLayout = () => {
     } finally {
       setLoading(false);
     }
-  }, 500); // Delay of 500ms before triggering the API call
+  }, 500);
 
   return (
     <div className="max-w-3xl mx-auto px-4 mt-10">
@@ -51,7 +51,12 @@ const MainLayout = () => {
 
       {error && <p className="text-red-500 mt-6 text-center">{error}</p>}
 
-      {userData && <UserProfile userData={userData} />}
+      {userData && (
+        <>
+          <UserProfile userData={userData} />
+          {userData.repos && <UserRepos repos={userData.repos} />}
+        </>
+      )}
     </div>
   );
 };
